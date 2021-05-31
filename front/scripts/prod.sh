@@ -1,8 +1,5 @@
 #!/bin/bash
-rm dist* -rf
+rm /data/wk/vava/front/dist -rf
 npm run build
-zip -r dist.zip dist
-scp -o StrictHostKeyChecking=no dist.zip hejian@10.43.102.97:~/
-
-git tag -a v$(date +%s) -m 'version v$(date +%s)'
-git push --tags origin master
+sudo chown -R nginx:nginx /data/wk/vava/front/dist
+sudo chmod -R 755 /data/wk/vava/front/dist

@@ -1,5 +1,5 @@
 #!/bin/bash
-rm dist* -rf
+rm /data/wk/vava/dev/vava/front/dist -rf
 npm run bdev
-zip -r dist.zip dist
-scp -o StrictHostKeyChecking=no dist.zip hejian@10.43.102.97:~/
+sudo chown -R nginx:nginx /data/wk/vava/dev/vava/front/dist
+sudo chmod -R 755 /data/wk/vava/dev/vava/front/dist

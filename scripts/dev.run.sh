@@ -1,10 +1,10 @@
 #!/bin/bash
-pushd /data/wk/ana/dev/ana
+pushd /data/wk/vava/dev/vava
 git pull origin master
 
 pushd ./server
 yarn install
-pm2 restart anadev
+pm2 restart vava3dev
 popd
 
 pushd ./front
