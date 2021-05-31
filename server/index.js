@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const cfg = require('../assets/config/app')
 const {log} = require('./lib/log')
 const router = require('./router/index')
+const db = require('./lib/mysql/db')
 
 app.use(express.json())
 app.use(cookieParser())
@@ -21,6 +22,10 @@ const corsOptions = {
   credentials: true,
 }
 app.use(cors(corsOptions))
+
+// db
+const dbs = Object.keys(cfg.env.mysql).map(k => cfg.env.mysql[k])
+db.init(dbs)
 
 router.boot(app)
 
