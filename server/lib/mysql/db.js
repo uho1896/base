@@ -99,7 +99,7 @@ async function transaction(sqls, opts = {}) {
 
   try {
     for (let i=0, l=sqls.length; i<l; i++) {
-      await query(sqls[i], {db, connection});
+      await query(sqls[i], {db: opts.db, connection});
     }
 
     await new Promise((resolve, reject) => {

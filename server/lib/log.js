@@ -46,7 +46,30 @@ const logMysql = winston.createLogger({
   ]
 });
 
+function createLogger(name) {
+  return winston.createLogger({
+    format: winston.format.combine(
+      winston.format.timestamp({format: timezoned}),
+      winston.format.splat(),
+      winston.format.simple()
+    ),
+    transports: [
+      new winston.transports.Console(),
+      new winston.transports.File({
+        filename: path.resolve(__dirname, `../../log/error_${name}.log`),
+        level: 'error',
+        maxsize: 20485760,
+      }),
+      new winston.transports.File({
+        filename: path.resolve(__dirname, `../../log/info_${name}.log`),
+        maxsize: 20485760,
+      })
+    ]
+  });
+}
+
 module.exports = {
   log,
   logMysql,
+  createLogger,
 };
